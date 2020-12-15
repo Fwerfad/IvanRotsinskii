@@ -48,7 +48,7 @@
 
     <profiles>
         <profile>
-            <id>222</id>
+            <id>1</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -60,7 +60,7 @@
                         <version>2.12.4</version>
                         <configuration>
                             <suiteXmlFiles>
-                                <suiteXmlFile>testSuite.xml</suiteXmlFile>
+                                <suiteXmlFile>testng.xml</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
