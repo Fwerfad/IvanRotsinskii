@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Sum and sub suite">
+    <test name="Sum Test">
+        <classes>
+            <class name="hw2.ex1.ExerciseOneTests"/>
+        </classes>
+    </test>
+</suite>
