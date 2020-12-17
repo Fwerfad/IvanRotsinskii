@@ -10,7 +10,7 @@ import org.testng.annotations.*;
 public class ExerciseOneTests {
     private WebDriver driver;
 
-    @BeforeSuite
+    @BeforeClass
     public static void setupClass() {
         System.out.println("1");
         WebDriverManager.chromedriver().setup();
@@ -30,7 +30,7 @@ public class ExerciseOneTests {
         Assert.assertTrue(true);
     }
 
-    @AfterMethod
+    @AfterClass
     public void teardown() {
         System.out.println("3");
         if (driver != null) {
