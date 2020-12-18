@@ -2,7 +2,12 @@
 <suite name="Suite">
     <test name="ExerciseOneTest">
         <classes>
-            <class name="hw2.ex1.ExerciseOneTests"/>
+            <class name="hw2.ex1.ExerciseOneTest"/>
+        </classes>
+    </test>
+    <test name="ExerciseTwoTest">
+        <classes>
+            <class name="hw2.ex2.ExerciseTwoTest"/>
         </classes>
     </test>
 </suite>
