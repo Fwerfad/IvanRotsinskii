@@ -16,19 +16,17 @@ public class ExerciseTwoTest {
 
     @BeforeClass
     public static void setupClass() {
-        System.out.println("1");
         WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
     public void setupTest() {
-        System.out.println("2");
         this.driver = new ChromeDriver();
     }
 
     @Test
-    public void test() throws InterruptedException {
-        System.out.println("3");
+    public void test() {
         this.driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.manage().window().maximize();
         SoftAssert softAssert = new SoftAssert();
         // 1 Test site is opened
         softAssert.assertNotEquals(driver.getTitle(), "Page not found · GitHub Pages");
@@ -117,7 +115,6 @@ public class ExerciseTwoTest {
 
     @AfterMethod
     public void teardown() {
-        System.out.println("4");
         if (driver != null) {
             driver.quit();
         }
