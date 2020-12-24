@@ -1,12 +1,15 @@
-package hw2.ex1;
+package hw3.ex1;
 
+import hw3.pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class ExerciseOneTest {
     private WebDriver driver;
@@ -21,27 +24,27 @@ public class ExerciseOneTest {
     }
 
     @Test
-    public void test() {
-        this.driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+    public void test() throws FileNotFoundException {
+        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        HomePage homePage = new HomePage(driver);
         driver.manage().window().maximize();
+        Scanner scanner = new Scanner(new File("src/main/java/resources/properties.txt"));
+        String login = scanner.next(), password = scanner.next();
+        scanner.close();
         SoftAssert softAssert = new SoftAssert();
         // 1 Test site is opened
         softAssert.assertNotEquals(driver.getTitle(),"Page not found · GitHub Pages");
         // 2 Browser title equals "Home Page"
         softAssert.assertEquals(driver.getTitle(),"Home Page");
         // 3 Perform login
-        driver.findElement(By.id("user-icon")).click();
-        driver.findElement(By.id("name")).sendKeys("Roman");
-        driver.findElement(By.id("password")).sendKeys("Jdi1234");
-        driver.findElement(By.id("login-button")).click();
-        softAssert.assertTrue(!driver.findElement(By.id("user-name")).getText().equals(""));
+        homePage.login(login, password);
+        softAssert.assertTrue(!homePage.getUserName().equals(""));
         // 4 Assert Username is logged
-        String username = driver.findElement(By.id("user-name")).getText();
-        softAssert.assertEquals(username, "ROMAN IOVLEV");
+        softAssert.assertEquals(homePage.getUserName(), "ROMAN IOVLEV");
         // 5 Assert that there are 4 items on the header section are displayed and they have proper texts
         boolean[] flags = {false, false, false, false};
-        for (WebElement elem : driver.findElement(By.className("navbar-nav")).findElements(By.tagName("li"))) {
-            switch (elem.getText()) {
+        for (String name : homePage.getNavbarElementsNames()) {
+            switch (name) {
                 case ("HOME"):
                     flags[0] = true;
                     break;
@@ -58,32 +61,19 @@ public class ExerciseOneTest {
         }
         softAssert.assertTrue(flags[0] && flags[1] && flags[2] && flags[3]);
         // 6 Assert that there are 4 images on the Index Page and they are displayed
-        int counter = 0;
-        WebElement root = driver.findElement(By.cssSelector("div[class='row clerafix benefits']"));
-        for (WebElement elem : root.findElements(By.className("icons-benefit"))) {
-            if (elem.isDisplayed()) {
-                counter++;
-            }
-        }
-        softAssert.assertEquals(counter, 4);
+        softAssert.assertEquals(homePage.getNumberOfBenefitIcons(), 4);
         // 7 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        counter = 0;
-        for (WebElement elem : driver.findElements(By.className("benefit"))) {
-            if (!elem.findElement(By.className("benefit-txt")).getText().equals("")) {
-                counter++;
-            }
-        }
-        softAssert.assertEquals(counter, 4);
+        softAssert.assertEquals(homePage.getNumberOfBenefitTexts(), 4);
         // 8 Assert that there is the iframe with “Frame Button” exist
-        softAssert.assertTrue(driver.findElement(By.id("frame")).isDisplayed());
+        softAssert.assertTrue(homePage.checkIsFrameDisplayed());
         // 9 Switch to the iframe and check that there is “Frame Button” in the iframe
-        softAssert.assertEquals(driver.switchTo().frame("frame").findElement(By.id("frame-button")).isDisplayed(), true);
+        softAssert.assertEquals(homePage.checkIsFrameButtonIsDisplayed(), true);
         // 10 Switch to original window back
-        driver.switchTo().defaultContent();
+        // it's done in 9 point
         // 11 Assert that there are 5 items in the Left Section are displayed and they have proper text
         flags = new boolean[] {false, false, false, false, false};
-        for (WebElement elem : driver.findElement(By.className("sidebar-menu")).findElements(By.tagName("li"))) {
-            switch (elem.getText()) {
+        for (String elem : homePage.getSideBarElements()) {
+            switch (elem) {
                 case ("Home"):
                     flags[0] = true;
                     break;
