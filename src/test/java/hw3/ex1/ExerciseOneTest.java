@@ -10,6 +10,8 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ExerciseOneTest extends BaseTest {
@@ -32,56 +34,22 @@ public class ExerciseOneTest extends BaseTest {
         // 4 Assert Username is logged
         softAssert.assertEquals(homePage.getUserName(), "ROMAN IOVLEV");
         // 5 Assert that there are 4 items on the header section are displayed and they have proper texts
-        boolean[] flags = {false, false, false, false};
-        for (String name : homePage.getNavbarElementsNames()) {
-            switch (name) {
-                case ("HOME"):
-                    flags[0] = true;
-                    break;
-                case ("CONTACT FORM"):
-                    flags[1] = true;
-                    break;
-                case ("SERVICE"):
-                    flags[2] = true;
-                    break;
-                case("METALS & COLORS"):
-                    flags[3] = true;
-                    break;
-            }
-        }
-        softAssert.assertTrue(flags[0] && flags[1] && flags[2] && flags[3]);
+        ArrayList<Boolean> flags = homePage.checkNavbarElementsNames(new ArrayList<>(Arrays.asList("HOME", "CONTACT FORM", "SERVICE", "METALS & COLORS")));
+        softAssert.assertTrue(!flags.contains(false));
         // 6 Assert that there are 4 images on the Index Page and they are displayed
         softAssert.assertEquals(homePage.getNumberOfBenefitIcons(), 4);
         // 7 Assert that there are 4 texts on the Index Page under icons and they have proper text
         softAssert.assertEquals(homePage.getNumberOfBenefitTexts(), 4);
         // 8 Assert that there is the iframe with “Frame Button” exist
-        softAssert.assertTrue(homePage.checkIsFrameDisplayed());
+        softAssert.assertTrue(homePage.checkIsFrameDisplayed(), "8 is wrong");
         // 9 Switch to the iframe and check that there is “Frame Button” in the iframe
-        softAssert.assertEquals(homePage.checkIsFrameButtonIsDisplayed(), true);
+        softAssert.assertTrue(homePage.checkIsFrameButtonIsDisplayed(), "9 is wrong");
         // 10 Switch to original window back
         // it's done in 9 point
+        softAssert.assertEquals(driver.getTitle(),"Home Page");
         // 11 Assert that there are 5 items in the Left Section are displayed and they have proper text
-        flags = new boolean[] {false, false, false, false, false};
-        for (String elem : homePage.getSideBarElements()) {
-            switch (elem) {
-                case ("Home"):
-                    flags[0] = true;
-                    break;
-                case ("Contact form"):
-                    flags[1] = true;
-                    break;
-                case ("Service"):
-                    flags[2] = true;
-                    break;
-                case("Metals & Colors"):
-                    flags[3] = true;
-                    break;
-                case("Elements packs"):
-                    flags[4] = true;
-                    break;
-            }
-        }
-        softAssert.assertTrue(flags[0] && flags[1] && flags[2] && flags[3] && flags[4]);
+        flags = homePage.checkSideBarElements(new ArrayList<>(Arrays.asList("Home", "Contact form", "Service", "Metals & Colors", "Elements packs")));
+        softAssert.assertTrue(!flags.contains(false));
         // 12 Close Browser
         driver.close();
         softAssert.assertAll();

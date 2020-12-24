@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 
-public class HomePage {
+public class HomePage extends BasePage {
     private WebDriver driver;
     @FindBy(id = "user-icon")
     private WebElement userIcon;
@@ -44,11 +44,11 @@ public class HomePage {
     public String getUserName() {
                 return (userName.getText());
     }
-    public ArrayList<String> getNavbarElementsNames() {
-        ArrayList<String> arr = new ArrayList<>();
+    public ArrayList<Boolean> checkNavbarElementsNames(ArrayList<String> names) {
+        ArrayList<String> actualNames = new ArrayList<>();
         for (WebElement elem : navbar.findElements(By.tagName("li")))
-            arr.add(elem.getText());
-        return arr;
+            actualNames.add(elem.getText());
+        return checkOneInAnother(names, actualNames);
     }
     public int getNumberOfBenefitIcons() {
         int counter = 0;
@@ -82,12 +82,11 @@ public class HomePage {
         return flag;
     }
 
-    public ArrayList<String> getSideBarElements() {
-        ArrayList<String> arr = new ArrayList<>();
-
+    public ArrayList<Boolean> checkSideBarElements(ArrayList<String> names) {
+        ArrayList<String> actualNames = new ArrayList<>();
         for (WebElement elem : sidebar.findElements(By.tagName("li")))
-            arr.add(elem.getText());
-        return arr;
+            actualNames.add(elem.getText());
+        return checkOneInAnother(names, actualNames);
     }
 
     public void navToDifferentElementPage() {

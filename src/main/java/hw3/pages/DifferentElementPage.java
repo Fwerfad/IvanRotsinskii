@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DifferentElementPage {
+public class DifferentElementPage extends BasePage{
     private WebDriver driver;
     @FindBys(@FindBy (className = "label-checkbox"))
     private List<WebElement> labelsCheckbox;
@@ -29,19 +29,13 @@ public class DifferentElementPage {
 
     public ArrayList<Boolean> switchCheckboxes(ArrayList<String> names) {
         ArrayList<Boolean> arr = new ArrayList<>();
-        ArrayList<String> elemNames = new ArrayList<>();
+        ArrayList<String> actualNames = new ArrayList<>();
         for (WebElement elem : labelsCheckbox) {
-            elemNames.add(elem.getText());
+            actualNames.add(elem.getText());
             if (names.contains(elem.getText()))
                 elem.click();
         }
-        for (String name : names) {
-            if (elemNames.contains(name))
-                arr.add(true);
-            else
-                arr.add(false);
-        }
-        return arr;
+        return checkOneInAnother(names, actualNames);
     }
 
     public boolean selectRadio(String name) {
@@ -66,17 +60,10 @@ public class DifferentElementPage {
 
     public ArrayList<Boolean> checkLogs(ArrayList<Pair<String, String>> names) {
         ArrayList<Pair<String, String>> actualNames = new ArrayList<>();
-        ArrayList<Boolean> arr = new ArrayList<>();
         for (WebElement elem : panelBodyList.findElements(By.tagName("li"))) {
             String[] str = elem.getText().split(" ");
             actualNames.add(new Pair<>(str[1], str[5]));
         }
-        for (Pair<String, String> name : names) {
-            if (actualNames.contains(name))
-                arr.add(true);
-            else
-                arr.add(false);
-        }
-        return arr;
+        return checkOneInAnother(names, actualNames);
     }
 }
