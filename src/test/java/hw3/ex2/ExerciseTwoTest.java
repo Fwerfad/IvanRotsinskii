@@ -1,16 +1,10 @@
 package hw3.ex2;
 
+import hw3.BaseTest;
 import hw3.pages.DifferentElementPage;
 import hw3.pages.HomePage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import javafx.util.Pair;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -20,17 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class ExerciseTwoTest {
-    private WebDriver driver;
-
-    @BeforeClass
-    public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
-    @BeforeMethod
-    public void setupTest() {
-        this.driver = new ChromeDriver();
-    }
+public class ExerciseTwoTest extends BaseTest {
 
     @Test
     public void test() throws FileNotFoundException {

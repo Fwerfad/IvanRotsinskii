@@ -1,5 +1,6 @@
 package hw3.ex1;
 
+import hw3.BaseTest;
 import hw3.pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -11,18 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class ExerciseOneTest {
-    private WebDriver driver;
-
-    @BeforeClass
-    public static void setupClass() {
-        WebDriverManager.chromedriver().setup();
-    }
-    @BeforeMethod
-    public void setupTest() {
-        this.driver = new ChromeDriver();
-    }
-
+public class ExerciseOneTest extends BaseTest {
     @Test
     public void test() throws FileNotFoundException {
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
@@ -95,12 +85,5 @@ public class ExerciseOneTest {
         // 12 Close Browser
         driver.close();
         softAssert.assertAll();
-    }
-
-    @AfterMethod
-    public void teardown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
 }
