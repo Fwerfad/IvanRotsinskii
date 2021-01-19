@@ -1,4 +1,4 @@
-package hw3.pages;
+package hw5.pages;
 
 import javafx.util.Pair;
 import org.openqa.selenium.By;

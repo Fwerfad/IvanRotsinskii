@@ -1,4 +1,4 @@
-package hw3.pages;
+package hw5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

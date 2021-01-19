@@ -1,10 +1,7 @@
-package hw3.ex1;
+package hw5.ex1;
 
-import hw3.BaseTest;
-import hw3.pages.HomePage;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import hw5.BaseTest;
+import hw5.pages.HomePage;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
@@ -13,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
 
 public class ExerciseOneTest extends BaseTest {
     @Test

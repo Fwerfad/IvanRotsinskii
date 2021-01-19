@@ -1,4 +1,4 @@
-package hw3;
+package hw5;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

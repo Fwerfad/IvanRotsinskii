@@ -1,8 +1,8 @@
-package hw3.ex2;
+package hw5.ex2;
 
-import hw3.BaseTest;
-import hw3.pages.DifferentElementPage;
-import hw3.pages.HomePage;
+import hw5.BaseTest;
+import hw5.pages.DifferentElementPage;
+import hw5.pages.HomePage;
 import javafx.util.Pair;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
