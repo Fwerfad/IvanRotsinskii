@@ -147,12 +147,11 @@
                 </dependencies>
                 <executions>
                     <execution>
-<!--                        <phase>integration-test</phase>-->
-<!--                        <goals>-->
+                        <phase>integration-test</phase>
+                        <goals>
 <!--                            <goal>integration-test</goal>-->
-<!--                        </goals>-->
-                        <phase>verify</phase>
-                        <goal>verify</goal>
+                            <goal>verify</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
