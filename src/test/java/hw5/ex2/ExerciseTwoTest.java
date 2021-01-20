@@ -3,7 +3,9 @@ package hw5.ex2;
 import hw5.BaseTest;
 import hw5.pages.DifferentElementPage;
 import hw5.pages.HomePage;
+import hw5.storynames.Epics;
 import hw5.storynames.Features;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
@@ -18,11 +20,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+@Epic(Epics.epicTwo)
 public class ExerciseTwoTest extends BaseTest {
 
-    @Test
-    @Feature(Features.testOne)
-    @Story(Features.storyOne)
+    @Test(description = "Второе задание: переключатели ")
+    @Feature(Features.testTwo)
+    @Story(Features.storyTwo)
     @Owner("Ivan Ivanovich")
     public void test() throws FileNotFoundException {
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");

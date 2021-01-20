@@ -3,3 +3,5 @@
 /e/
 /.idea/
 /etc./
+**/allure-results
+**/.allure
