@@ -147,7 +147,7 @@
                 </dependencies>
                 <executions>
                     <execution>
-                        <phase>integration-test</phase>
+                        <phase>verify</phase>
                         <goals>
 <!--                            <goal>integration-test</goal>-->
                             <goal>verify</goal>

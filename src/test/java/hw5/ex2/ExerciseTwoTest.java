@@ -3,6 +3,9 @@ package hw5.ex2;
 import hw5.BaseTest;
 import hw5.pages.DifferentElementPage;
 import hw5.pages.HomePage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import javafx.util.Pair;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -17,6 +20,10 @@ import java.util.Scanner;
 public class ExerciseTwoTest extends BaseTest {
 
     @Test
+    @Feature()
+    @Story()
+    @Story()
+    @Owner("Ivan Ivanovich")
     public void test() throws FileNotFoundException {
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
         HomePage homePage = new HomePage(driver);
