@@ -72,4 +72,29 @@ public class AssertionStep extends AbstractStep{
         softAssert.assertAll();
         driver.close();
     }
+
+    @Step("Шаг 5 : Переход на страницу с элементами")
+    public void checkDifferentElementPage(String str) {
+        softAssert.assertEquals(driver.getTitle(), str);
+    }
+
+    @Step("Шаг 6 : Перекоючить чекбоксы")
+    public void switchCheckboxes(ArrayList<Boolean> flags) {
+        softAssert.assertTrue(!flags.contains(false), "6 is wrong");
+    }
+
+    @Step("Шаг 7 : Переключить радио-кнопку")
+    public void selectRadio(boolean flag) {
+        softAssert.assertTrue(flag, "7 is wrong");
+    }
+
+    @Step("Шаг 8 : Выбрать предмет в выпадающем списке")
+    public void selectInDropdown(boolean flag) {
+        softAssert.assertTrue(flag, "8 is wrong");
+    }
+
+    @Step("Шаг 9 : Проверка логов")
+    public void checkLogs(ArrayList<Boolean> flags) {
+        softAssert.assertTrue(!flags.contains(false), "9 is wrong");
+    }
 }

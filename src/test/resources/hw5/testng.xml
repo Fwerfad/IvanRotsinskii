@@ -13,4 +13,9 @@
             <class name="hw5.ex2.ExerciseTwoTest"/>
         </classes>
     </test>
+    <test name="FailedTest">
+        <classes>
+            <class name="hw5.failedTest.FailedTest"/>
+        </classes>
+    </test>
 </suite>

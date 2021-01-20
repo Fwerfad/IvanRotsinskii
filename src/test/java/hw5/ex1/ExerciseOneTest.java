@@ -1,7 +1,6 @@
 package hw5.ex1;
 
 import hw5.BaseTest;
-import hw5.pages.HomePage;
 import hw5.steps.ActionStep;
 import hw5.steps.AssertionStep;
 import hw5.storynames.Epics;
@@ -11,14 +10,9 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
-
-import javax.swing.*;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
 
 @Epic(Epics.epicOne)
 public class ExerciseOneTest extends BaseTest {

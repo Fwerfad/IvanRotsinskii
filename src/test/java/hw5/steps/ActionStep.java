@@ -1,6 +1,8 @@
 package hw5.steps;
 
+import hw5.pages.DifferentElementPage;
 import io.qameta.allure.Step;
+import javafx.util.Pair;
 import org.openqa.selenium.WebDriver;
 
 import java.io.File;
@@ -55,5 +57,25 @@ public class ActionStep extends AbstractStep{
 
     public ArrayList<Boolean> checkSideBarElements(ArrayList<String> elements) {
         return homePage.checkSideBarElements(elements);
+    }
+
+    public void navToDifferentElementPage() {
+        homePage.navToDifferentElementPage();
+    }
+
+    public ArrayList<Boolean> switchCheckboxes(ArrayList<String> str) {
+        return differentElementPage.switchCheckboxes(str);
+    }
+
+    public boolean selectRadio(String str) {
+        return differentElementPage.selectRadio(str);
+    }
+
+    public boolean selectInDropdown(String str) {
+        return differentElementPage.selectInDropdown(str);
+    }
+
+    public ArrayList<Boolean> checkLogs(ArrayList<Pair<String,String>> arr) {
+        return differentElementPage.checkLogs(arr);
     }
 }
