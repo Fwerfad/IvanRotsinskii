@@ -1,4 +1,4 @@
-package hw5.pages;
+package hw6.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -35,15 +35,35 @@ public class HomePage extends BasePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public void login(String username, String password) {
+    public HomePage login(String username, String password) {
         userIcon.click();
         name.sendKeys(username);
         this.password.sendKeys(password);
         loginButton.click();
+        return this;
+    }
+    public void open() {
+        driver.get("https://jdi-testing.github.io/jdi-light/index.html");
     }
     public String getUserName() {
                 return (userName.getText());
     }
+
+    public void clickServiceButton() {
+        for (WebElement elem : navbar.findElements(By.tagName("li"))) {
+            if (elem.getText().equals("SERVICE")) {
+                elem.click();
+                for (WebElement elem2 : dropdownMenu.findElements(By.tagName("li"))) {
+                    if (elem2.getText().equals("USER TABLE")) {
+                        elem2.findElement(By.tagName("a")).click();
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
     public ArrayList<Boolean> checkNavbarElementsNames(ArrayList<String> names) {
         ArrayList<String> actualNames = new ArrayList<>();
         for (WebElement elem : navbar.findElements(By.tagName("li")))

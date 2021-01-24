@@ -1,4 +1,4 @@
-package hw5.pages;
+package hw6.pages;
 
 import javafx.util.Pair;
 import org.openqa.selenium.By;
@@ -62,7 +62,7 @@ public class DifferentElementPage extends BasePage{
         ArrayList<Pair<String, String>> actualNames = new ArrayList<>();
         for (WebElement elem : panelBodyList.findElements(By.tagName("li"))) {
             String[] str = elem.getText().split(" ");
-            actualNames.add(new Pair<>(str[1], str[5]));
+            actualNames.add(new Pair<>(str[1].replace(":", ""), str[5]));
         }
         return checkOneInAnother(names, actualNames);
     }

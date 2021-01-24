@@ -1,4 +1,4 @@
-package hw5.storynames;
+package hw6.storynames;
 
 public class Stories {
 

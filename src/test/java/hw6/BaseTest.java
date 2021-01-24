@@ -1,4 +1,4 @@
-package hw5;
+package hw6;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;

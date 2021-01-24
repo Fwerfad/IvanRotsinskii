@@ -1,4 +1,4 @@
-package hw5.storynames;
+package hw6.storynames;
 
 import lombok.experimental.UtilityClass;
 
