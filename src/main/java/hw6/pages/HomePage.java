@@ -44,6 +44,7 @@ public class HomePage extends BasePage {
     }
     public void open() {
         driver.get("https://jdi-testing.github.io/jdi-light/index.html");
+        driver.manage().window().maximize();
     }
     public String getUserName() {
                 return (userName.getText());
@@ -62,51 +63,6 @@ public class HomePage extends BasePage {
                 break;
             }
         }
-    }
-
-    public ArrayList<Boolean> checkNavbarElementsNames(ArrayList<String> names) {
-        ArrayList<String> actualNames = new ArrayList<>();
-        for (WebElement elem : navbar.findElements(By.tagName("li")))
-            actualNames.add(elem.getText());
-        return checkOneInAnother(names, actualNames);
-    }
-    public int getNumberOfBenefitIcons() {
-        int counter = 0;
-        WebElement root = driver.findElement(By.cssSelector("div[class='row clerafix benefits']"));
-        for (WebElement elem : root.findElements(By.className("icons-benefit"))) {
-            if (elem.isDisplayed()) {
-                counter++;
-            }
-        }
-        return counter;
-    }
-
-    public int getNumberOfBenefitTexts() {
-        int counter = 0;
-        for (WebElement elem : driver.findElements(By.className("benefit"))) {
-            if (!elem.findElement(By.className("benefit-txt")).getText().equals("")) {
-                counter++;
-            }
-        }
-        return counter;
-    }
-
-    public boolean checkIsFrameDisplayed() {
-        return frame.isDisplayed();
-    }
-
-    public boolean checkIsFrameButtonIsDisplayed() {
-        driver.switchTo().frame(frame);
-        boolean flag = frameButton.isDisplayed();
-        driver.switchTo().defaultContent();
-        return flag;
-    }
-
-    public ArrayList<Boolean> checkSideBarElements(ArrayList<String> names) {
-        ArrayList<String> actualNames = new ArrayList<>();
-        for (WebElement elem : sidebar.findElements(By.tagName("li")))
-            actualNames.add(elem.getText());
-        return checkOneInAnother(names, actualNames);
     }
 
     public void navToDifferentElementPage() {

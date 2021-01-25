@@ -44,25 +44,26 @@ public class AssertionStep {
 
     @Then("{int} Number Type Dropdowns should be displayed on Users Table on User Table Page")
     public void number_Type_Dropdowns_should_be_displayed_on_Users_Table_on_User_Table_Page(Integer int1) {
-        Assert.assertTrue(TestContext.getInstance().getUserTableData().size() == int1, "wrong number type");
+
+        Assert.assertTrue(new UserTableData(TestContext.getInstance().getDriver()).checkImages() == int1, "wrong number type");
     }
 
     @Then("{int} Usernames should be displayed on Users Table on User Table Page")
     public void usernames_should_be_displayed_on_Users_Table_on_User_Table_Page(Integer int1) {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertTrue(TestContext.getInstance().getUserTableData().size() == int1, "wrong number of users");
+        Assert.assertTrue(new UserTableData(TestContext.getInstance().getDriver()).checkUsers() == int1, "wrong number of users");
     }
 
     @Then("{int} Description texts under images should be displayed on Users Table on User Table Page")
     public void description_texts_under_images_should_be_displayed_on_Users_Table_on_User_Table_Page(Integer int1) {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertTrue(TestContext.getInstance().getUserTableData().size() == int1, "wrong number of images");
+        Assert.assertTrue(new UserTableData(TestContext.getInstance().getDriver()).checkDescriptions() == int1, "wrong number of images");
     }
 
     @Then("{int} checkboxes should be displayed on Users Table on User Table Page")
     public void checkboxes_should_be_displayed_on_Users_Table_on_User_Table_Page(Integer int1) {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertTrue(TestContext.getInstance().getUserTableData().size() == int1, "wrong number of checkboxes");
+        Assert.assertTrue(new UserTableData(TestContext.getInstance().getDriver()).checkCheckboxes() == int1, "wrong number of checkboxes");
     }
 
     @Then("User table should contain following values:")

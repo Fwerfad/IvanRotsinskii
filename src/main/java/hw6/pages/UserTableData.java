@@ -2,6 +2,7 @@ package hw6.pages;
 
 import javafx.util.Pair;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,5 +49,50 @@ public class UserTableData extends BasePage{
         if (counter==number && logEntry.contains(text))
             return true;
         return false;
+    }
+
+    public int checkImages() {
+        int counter = 0;
+        for (WebElement element : userTable.findElements(By.tagName("tr"))) {
+            try {
+                if (element.findElement(By.tagName("img")) != null)
+                    counter++;
+            }
+            catch(NoSuchElementException ignored) {}
+        }
+        return counter;
+    }
+    public int checkUsers() {
+        int counter = 0;
+        for (WebElement element : userTable.findElements(By.tagName("tr"))) {
+            try {
+                if (element.findElement(By.tagName("a")) != null)
+                    counter++;
+            }
+            catch(NoSuchElementException ignored) {}
+        }
+        return counter;
+    }
+    public int checkDescriptions() {
+        int counter = 0;
+        for (WebElement element : userTable.findElements(By.tagName("tr"))) {
+            try {
+                if (element.findElement(By.tagName("span")) != null)
+                    counter++;
+            }
+            catch(NoSuchElementException ignored) {}
+        }
+        return counter;
+    }
+    public int checkCheckboxes() {
+        int counter = 0;
+        for (WebElement element : userTable.findElements(By.tagName("tr"))) {
+            try {
+                if (element.findElement(By.tagName("input")) != null)
+                    counter++;
+            }
+            catch(NoSuchElementException ignored) {}
+        }
+        return counter;
     }
 }
