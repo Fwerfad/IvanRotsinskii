@@ -35,9 +35,14 @@ public class ActionStep{
         new DifferentElementPage(TestContext.getInstance().getDriver()).selectInDropdown(name);
     }
 
-    @When("I click on Service button in Header and I click on User Table button in Service dropdown")
+    @When("I click on Service button in Header")
     public void i_click_on_Service_button() {
         new HomePage(TestContext.getInstance().getDriver()).clickServiceButton();
+    }
+
+    @When("I click on User Table button in Service dropdown")
+    public void i_click_on_User_table_button() {
+        new HomePage(TestContext.getInstance().getDriver()).clickButtonInServiceDropdown();
     }
 
     @When("I select {string} checkbox for {string}")

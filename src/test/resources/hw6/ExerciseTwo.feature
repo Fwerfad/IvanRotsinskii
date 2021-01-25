@@ -6,7 +6,8 @@ Feature: User Table Page test
   Scenario: User Table Page test
   Given I open JDI GitHub site
   And I login as user "Roman Iovlev"
-  When I click on Service button in Header and I click on User Table button in Service dropdown
+  When I click on Service button in Header
+  And I click on User Table button in Service dropdown
   Then "User Table" page should be opened
   And 6 Number Type Dropdowns should be displayed on Users Table on User Table Page
   And 6 Usernames should be displayed on Users Table on User Table Page

@@ -54,12 +54,15 @@ public class HomePage extends BasePage {
         for (WebElement elem : navbar.findElements(By.tagName("li"))) {
             if (elem.getText().equals("SERVICE")) {
                 elem.click();
-                for (WebElement elem2 : dropdownMenu.findElements(By.tagName("li"))) {
-                    if (elem2.getText().equals("USER TABLE")) {
-                        elem2.findElement(By.tagName("a")).click();
-                        break;
-                    }
-                }
+                break;
+            }
+        }
+    }
+
+    public void clickButtonInServiceDropdown() {
+        for (WebElement elem2 : dropdownMenu.findElements(By.tagName("li"))) {
+            if (elem2.getText().equals("USER TABLE")) {
+                elem2.findElement(By.tagName("a")).click();
                 break;
             }
         }
