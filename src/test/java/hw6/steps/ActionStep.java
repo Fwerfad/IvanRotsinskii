@@ -18,9 +18,14 @@ public class ActionStep{
         String username = "Roman", password = "Jdi1234";
         TestContext.getInstance().setUserName(new HomePage(TestContext.getInstance().getDriver()).login(username, password).getUserName());
     }
-    @When("I click on {string} button in Header and I click on {string} button in Service dropdown")
-    public void i_click_on_button_in_header(String name1, String name2) {
+    @When("I click on {string} button in Header")
+    public void i_click_on_button_in_header(String name1) {
+        new HomePage(TestContext.getInstance().getDriver()).openServiceDropdown();
+    }
+    @When("I click on {string} button in Service dropdown")
+    public void i_click_on_button_in_dropdown(String name1) {
         new HomePage(TestContext.getInstance().getDriver()).navToDifferentElementPage();
+
     }
     @When("I select checkboxes")
     public void selectCheckboxes(@Transpose List<String> list){

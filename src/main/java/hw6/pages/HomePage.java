@@ -68,16 +68,18 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void navToDifferentElementPage() {
+    public void openServiceDropdown() {
         for (WebElement elem : navbar.findElements(By.tagName("li"))) {
             if (elem.getText().equals("SERVICE")) {
                 elem.click();
-                for (WebElement elem2 : dropdownMenu.findElements(By.tagName("li"))) {
-                    if (elem2.getText().equals("DIFFERENT ELEMENTS")) {
-                        elem2.findElement(By.tagName("a")).click();
-                        break;
-                    }
-                }
+                break;
+            }
+        }
+    }
+    public void navToDifferentElementPage() {
+        for (WebElement elem2 : dropdownMenu.findElements(By.tagName("li"))) {
+            if (elem2.getText().equals("DIFFERENT ELEMENTS")) {
+                elem2.findElement(By.tagName("a")).click();
                 break;
             }
         }

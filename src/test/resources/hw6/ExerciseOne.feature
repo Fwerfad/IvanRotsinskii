@@ -6,7 +6,8 @@ Feature: Different Element Page test
   Scenario: Different Element Page test
   Given I open JDI GitHub site
   When I login as user "Roman Iovlev"
-    And I click on "Service" button in Header and I click on "Different Elements Page" button in Service dropdown
+    And I click on "Service" button in Header
+    And I click on "Different Elements Page" button in Service dropdown
     And I select checkboxes
       | Water | Wind |
     And I select radio "Selen"
