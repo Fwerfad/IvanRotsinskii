@@ -97,4 +97,9 @@ public class AssertionStep extends AbstractStep{
     public void checkLogs(ArrayList<Boolean> flags) {
         softAssert.assertTrue(!flags.contains(false), "9 is wrong");
     }
+
+    @Step("Шаг: Специально роняем тест")
+    public void fakeAssert() {
+        softAssert.assertTrue(false);
+    }
 }

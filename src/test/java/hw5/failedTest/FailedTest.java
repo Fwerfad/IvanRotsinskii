@@ -36,7 +36,8 @@ public class FailedTest extends BaseTest {
         actionStep.getCredos("src/main/java/resources/properties.txt");
         String login = actionStep.login();
         assertionStep.login(login);
-        throw new Exception("Intentional stop");
+        assertionStep.fakeAssert();
+        assertionStep.close();
     }
 
     @AfterMethod
