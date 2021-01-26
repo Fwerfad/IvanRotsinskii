@@ -20,14 +20,13 @@
         <webdrivermanager.version>4.0.0</webdrivermanager.version>
         <selenium.version>3.141.59</selenium.version>
         <assertj-core.version>3.16.1</assertj-core.version>
-        <cucumber.version>5.7.0</cucumber.version>
         <allure.version>2.13.5</allure.version>
         <aspectj.version>1.9.5</aspectj.version>
         <lombok.version>1.18.10</lombok.version>
 
         <!-- Plugins versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
         <allure-maven.version>2.10.0</allure-maven.version>
     </properties>
 
@@ -55,18 +54,6 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj-core.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>${cucumber.version}</version>
         </dependency>
 
         <dependency>
