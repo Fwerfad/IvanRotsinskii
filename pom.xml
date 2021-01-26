@@ -27,7 +27,7 @@
 
         <!-- Plugins versions -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-m5</maven-failsafe-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
         <allure-maven.version>2.10.0</allure-maven.version>
     </properties>
 
