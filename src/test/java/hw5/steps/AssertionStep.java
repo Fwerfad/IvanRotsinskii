@@ -97,6 +97,6 @@ public class AssertionStep extends AbstractStep{
 
     @Step("Шаг: Специально роняем тест")
     public void fakeAssert() {
-        Assert.assertTrue(true);
+        Assert.assertTrue(false);
     }
 }
