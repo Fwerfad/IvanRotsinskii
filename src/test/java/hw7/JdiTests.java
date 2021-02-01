@@ -9,15 +9,16 @@ import org.testng.annotations.Test;
 
 import static com.epam.jdi.light.driver.WebDriverUtils.killAllSeleniumDrivers;
 import static com.epam.jdi.light.elements.init.PageFactory.initElements;
-import static java.lang.String.format;
 import static hw7.entities.User.*;
 import org.json.*;
+import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class JdiTests {
@@ -49,8 +50,6 @@ public class JdiTests {
                     entry.getString("metals"),
                     entry.getJSONArray("vegetables")));
         }
-//        System.out.println(obj.keySet());
-//        System.out.println(testContext.getData().toString());
     }
 
     @Test
@@ -61,18 +60,51 @@ public class JdiTests {
     }
 
     @Test
-    public void jdiOpenMetalsAndColors(){
+    public void jdi3OpenMetalsAndColors(){
         JdiSite.openHomePage();
         JdiSite.jdiHomePage.navToMetalsAndColors();
         Assert.assertEquals(JdiSite.jdiHomePage.driver().getTitle(), JdiSite.METALSANDCOLOR); //Доставать тайтл не через драйвер
     }
 
     @Test
-    public void jdiFillFormMetalsAndColors(){
+    public void jdi4FillFormMetalsAndColors(){
         List<DataEntry> data = TestContext.getInstance().getData();
         JdiSite.openMetalsAndColor();
+        SoftAssert softAssert = new SoftAssert();
         for (DataEntry entry : data) {
-            JdiSite.jdiMetalsAndColor.fillData(entry);
+            Map<String, Boolean> result = JdiSite.jdiMetalsAndColor.fillData(entry);
+            for (String key : result.keySet()) {
+                softAssert.assertTrue(result.get(key), key + " is wrong in " + entry.toString());
+            }
         }
+        softAssert.assertAll();
+    }
+
+
+
+
+    @Test
+    public void jdi5SumbitFormMetalsAndColorsData() {
+        List<DataEntry> data = TestContext.getInstance().getData();
+        JdiSite.openMetalsAndColor();
+        SoftAssert softAssert = new SoftAssert();
+        for (DataEntry entry : data) {
+            Map<String, String> actualData = JdiSite.jdiMetalsAndColor.checkSubmission(entry);
+            softAssert.assertTrue(actualData.size() > 0, "wrong submission on " + entry.toString());
+        }
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void jdi6AssertSubmitFormMetalsAndColorsData() {
+        List<DataEntry> data = TestContext.getInstance().getData();
+        JdiSite.openMetalsAndColor();
+        SoftAssert softAssert = new SoftAssert();
+        for (DataEntry entry : data) {
+            Map<String, String> actualData = JdiSite.jdiMetalsAndColor.checkSubmission(entry);
+            Map<String, String> expectedData = entry.returnMap();
+            softAssert.assertEquals(actualData, expectedData, "wrong submission on " + entry.toString());
+        }
+        softAssert.assertAll();
     }
 }

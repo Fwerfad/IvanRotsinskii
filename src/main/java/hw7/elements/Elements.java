@@ -34,9 +34,8 @@ public class Elements extends Form {
     public void selectElements(ArrayList<String> elem) {
         for (String s : elem) {
             WebElement label = elements.get(1).webElement.get().findElements(By.tagName("label")).get(keys.get(s));
-            if (label.getText().equals(s)) {
+            if (label.getText().equals(s))
                 label.click();
-            }
         }
     }
     public ArrayList<Boolean> checkElements(ArrayList<String> elem) {
@@ -44,17 +43,23 @@ public class Elements extends Form {
         for (String s : elem) {
             WebElement label = elements.get(1).webElement.get().findElements(By.tagName("label")).get(keys.get(s));
             WebElement element = elements.get(1).webElement.get().findElements(By.tagName("input")).get(keys.get(s));
-            if (label.getText().equals(s)) {
-                boolean temp = element.isSelected();
-                if (temp) {
-                    label.click();
-                    result.add(true);
-                }
-            }
-            else {
+            if (label.getText().equals(s))
+                result.add(element.isSelected());
+            else
                 result.add(false);
-            }
         }
         return result;
+    }
+
+    public void reset(ArrayList<String> elem) {
+        for (String s : elem) {
+            WebElement label = elements.get(1).webElement.get().findElements(By.tagName("label")).get(keys.get(s));
+            WebElement element = elements.get(1).webElement.get().findElements(By.tagName("input")).get(keys.get(s));
+            if (label.getText().equals(s)) {
+                boolean temp = element.isSelected();
+                if (temp)
+                    label.click();
+            }
+        }
     }
 }

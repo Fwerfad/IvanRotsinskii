@@ -2,7 +2,9 @@ package hw7.entities;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -30,5 +32,31 @@ public class DataEntry {
         this.color = color;
         this.metals = metals;
         this.vegetables = new ArrayList<String>(convertList(vegetables.toList(), s -> (String) s));
+    }
+
+    public Map<String, String> returnMap() {
+        Map<String, String> result = new HashMap<>();
+        int summaryResult = 0;
+        for (int i : summary) {
+            summaryResult += i;
+        }
+        String elementsResult = "";
+        for (int i = 0; i < elements.size(); i++) {
+            elementsResult += elements.get(i);
+            if (i != elements.size() - 1)
+                elementsResult += ", ";
+        }
+        String vegetablesResult = "";
+        for (int i = 0; i < vegetables.size(); i++) {
+            vegetablesResult += vegetables.get(i);
+            if (i != vegetables.size() - 1)
+                vegetablesResult += ", ";
+        }
+        result.put("Summary", summaryResult + "");
+        result.put("Elements", elementsResult);
+        result.put("Color", color);
+        result.put("Metal", metals);
+        result.put("Vegetables", vegetablesResult);
+        return result;
     }
 }

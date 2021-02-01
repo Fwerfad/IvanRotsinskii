@@ -18,32 +18,47 @@ public class JdiMetalsAndColor  extends WebPage {
     private Colors colors = new Colors();
     private Metals metals = new Metals();
     private Vegetables vegetables = new Vegetables();
+    private ResultForm resultForm = new ResultForm();
 
 
+    private void runTests(DataEntry data) {
+        summary.selectSummary(data.getSummary());
+        elements.selectElements(data.getElements());
+        metals.selectMetal(data.getMetals());
+        colors.selectColor(data.getColor());
+        vegetables.selectVegetables(data.getVegetables());
+    }
 
-    public void fillData(DataEntry data) {
-        ArrayList<Integer> sum = data.getSummary();
-        ArrayList<String> elem = data.getElements();
-        ArrayList<String> veg = data.getVegetables();
-        String col = data.getColor();
-        String met = data.getMetals();
-        System.out.println(data);
-//        elements.selectElements(elem);
-//        ArrayList<Boolean> elementResult = (elements.checkElements(elem));
-//        summary.selectSummary(sum);
-//        ArrayList<Boolean> summaryResult = summary.checkSummary(sum);
-//        System.out.println(summaryResult);
-        ArrayList<Boolean> vegetableResult = vegetables.selectVegetables(veg);
-        //boolean colorsResult = colors.selectColor(col);
-//        boolean metalResult = metals.selectMetal(met);
+    private void reset(DataEntry data) {
+        vegetables.reset(data.getVegetables());
+        elements.reset(data.getElements());
+    }
 
-//
-//        try {
-//            Thread.sleep(1000);
-//        }
-//        catch (Exception ignored) {}
+    public Map<String, Boolean> fillData(DataEntry data) {
+        this.runTests(data);
+        ArrayList<Boolean> elementResult = (elements.checkElements(data.getElements()));
+        ArrayList<Boolean> summaryResult = summary.checkSummary(data.getSummary());
+        ArrayList<Boolean> vegetableResult = vegetables.checkVegetables(data.getVegetables());
+        boolean metalResult = metals.checkMetal(data.getMetals());
+        boolean colorsResult = colors.checkColor(data.getColor());
+        this.reset(data);
+        Map<String, Boolean> wholeResult = new HashMap<>();
+        wholeResult.put("Summary", !summaryResult.contains(false));
+        wholeResult.put("Elements", !elementResult.contains(false));
+        wholeResult.put("Vegetable", !vegetableResult.contains(false));
+        wholeResult.put("Color", colorsResult);
+        wholeResult.put("Metal", metalResult);
+        return wholeResult;
+    }
+
+    public Map<String, String> checkSubmission(DataEntry data) {
+        this.runTests(data);
+        Map<String, String> actualData = resultForm.getData();
+        this.reset(data);
+        return actualData;
     }
 }
+
 
 
 //
