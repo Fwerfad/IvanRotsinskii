@@ -64,10 +64,6 @@ public class JdiTests {
     public void jdiOpenMetalsAndColors(){
         JdiSite.openHomePage();
         JdiSite.jdiHomePage.navToMetalsAndColors();
-        System.out.println(JdiSite.jdiHomePage.url);
-        System.out.println(JdiSite.jdiHomePage.checkUrl);
-        System.out.println(JdiSite.jdiHomePage.isOpened());
-        System.out.println(JdiSite.jdiMetalsAndColor.isOpened());
         Assert.assertEquals(JdiSite.jdiHomePage.driver().getTitle(), JdiSite.METALSANDCOLOR); //Доставать тайтл не через драйвер
     }
 

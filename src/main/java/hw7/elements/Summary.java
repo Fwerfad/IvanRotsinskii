@@ -1,36 +1,85 @@
 package hw7.elements;
 
+import com.epam.jdi.light.elements.complex.WebList;
 import com.epam.jdi.light.elements.composite.Form;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
+import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Summary extends Form {
-    @Css("#p1")
-    private WebElement one;
-    @Css("#p2")
-    private WebElement three;
-    @Css("#p3")
-    private WebElement five;
-    @Css("#p4")
-    private WebElement seven;
-    @Css("#p5")
-    private WebElement two;
-    @Css("#p6")
-    private WebElement four;
-    @Css("#p7")
-    private WebElement six;
-    @Css("#p8")
-    private WebElement eight;
-    private ArrayList<WebElement> summary;
-    public Summary() {
-        summary = new ArrayList<WebElement>(Arrays.asList(one,two,three,four,five,six,seven,eight));
-    }
+//    @Css("#p1")
+//    private UIElement one;
+//    @Css("#p2")
+//    private UIElement three;
+//    @Css("#p3")
+//    private UIElement five;
+//    @Css("#p4")
+//    private UIElement seven;
+//    @Css("#p5")
+//    private UIElement two;
+//    @Css("#p6")
+//    private UIElement four;
+//    @Css("#p7")
+//    private UIElement six;
+//    @Css("#p8")
+//    private UIElement eight;
 
-    public void selectSummary(int index1, int index2) {
-        summary.get(index1).click();
-        summary.get(index2).click();
+    @Css("#odds-selector")
+    private RadioButtons odd;
+    @Css("#even-selector")
+    private RadioButtons even;
+    private Map<Integer, Integer> keys = new HashMap<Integer, Integer>(){{
+        put(1, 0);
+        put(2, 0);
+        put(3, 1);
+        put(4, 1);
+        put(5, 2);
+        put(6, 2);
+        put(7, 3);
+        put(8, 3);
+    }
+    };
+    public void selectSummary(ArrayList<Integer> indexes) {
+        for (int i : indexes) {
+            if (keys.containsKey(i)) {
+                int evenity = i % 2;
+                int index = keys.get(i);
+                WebElement element;
+                if (evenity == 0) {
+                    element = even.get(1).webElement.get().findElements(By.tagName("label")).get(index);
+                }
+                else {
+                    element = odd.get(1).webElement.get().findElements(By.tagName("label")).get(index);
+                }
+                element.click();
+            }
+        }
+    }
+    public ArrayList<Boolean> checkSummary(ArrayList<Integer> indexes) {
+        ArrayList<Boolean> result = new ArrayList<>();
+        for (int i : indexes) {
+            if (!keys.containsKey(i)) {
+                result.add(false);
+            }
+            else {
+                int evenity = i % 2;
+                int index = keys.get(i);
+                WebElement element;
+                if (evenity == 0) {
+                    element = even.get(1).webElement.get().findElements(By.tagName("input")).get(index);
+                }
+                else {
+                    element = odd.get(1).webElement.get().findElements(By.tagName("input")).get(index);
+                }
+                result.add(element.isSelected());
+            }
+        }
+        return result;
     }
 }
