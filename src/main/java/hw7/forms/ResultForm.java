@@ -1,5 +1,6 @@
-package hw7.elements;
+package hw7.forms;
 
+import com.epam.jdi.light.elements.composite.Form;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import org.openqa.selenium.WebElement;
@@ -7,9 +8,10 @@ import org.openqa.selenium.WebElement;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ResultForm {
+public class ResultForm extends Form {
     @Css("#mCSB_2_container > section:nth-child(2) > div.info-panel-body.info-panel-body-result > div > ul")
     private WebElement result;
+
     @Css("#submit-button")
     private Button resultButton;
 

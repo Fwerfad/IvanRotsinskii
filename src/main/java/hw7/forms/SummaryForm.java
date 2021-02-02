@@ -1,4 +1,4 @@
-package hw7.elements;
+package hw7.forms;
 
 import com.epam.jdi.light.elements.complex.WebList;
 import com.epam.jdi.light.elements.composite.Form;
@@ -12,28 +12,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Summary extends Form {
-//    @Css("#p1")
-//    private UIElement one;
-//    @Css("#p2")
-//    private UIElement three;
-//    @Css("#p3")
-//    private UIElement five;
-//    @Css("#p4")
-//    private UIElement seven;
-//    @Css("#p5")
-//    private UIElement two;
-//    @Css("#p6")
-//    private UIElement four;
-//    @Css("#p7")
-//    private UIElement six;
-//    @Css("#p8")
-//    private UIElement eight;
+public class SummaryForm extends Form {
 
     @Css("#odds-selector")
     private RadioButtons odd;
+
     @Css("#even-selector")
     private RadioButtons even;
+
     private Map<Integer, Integer> keys = new HashMap<Integer, Integer>(){{
         put(1, 0);
         put(2, 0);
@@ -43,8 +29,8 @@ public class Summary extends Form {
         put(6, 2);
         put(7, 3);
         put(8, 3);
-    }
-    };
+    }};
+
     public void selectSummary(ArrayList<Integer> indexes) {
         for (int i : indexes) {
             if (keys.containsKey(i)) {
@@ -61,6 +47,7 @@ public class Summary extends Form {
             }
         }
     }
+
     public ArrayList<Boolean> checkSummary(ArrayList<Integer> indexes) {
         ArrayList<Boolean> result = new ArrayList<>();
         for (int i : indexes) {
