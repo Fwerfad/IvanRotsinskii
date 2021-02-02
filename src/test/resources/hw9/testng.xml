@@ -2,7 +2,7 @@
 <suite name="Suite">
     <test name="JdiTests">
         <classes>
-            <class name="hw7.JdiTests"/>
+            <class name="hw9.JdiTests"/>
         </classes>
     </test>
 </suite>
