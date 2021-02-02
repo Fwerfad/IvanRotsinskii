@@ -19,12 +19,12 @@ public class RestCountriesAssertions {
 		return this;
 	}
 
-	public void verifyCountries(String... countryName) {
-		assertEquals(
-				stream(counties).map(CountryDto::getName).collect(toList()).toArray(new String[]{}),
-				countryName,
-				"Incorrect list of countries");
-	}
+//	public void verifyCountries(String... countryName) {
+//		assertEquals(
+//				stream(counties).map(CountryDto::getName).collect(toList()).toArray(new String[]{}),
+//				countryName,
+//				"Incorrect list of countries");
+//	}
 
 	public RestCountriesAssertions verifyDataEqual(CountryDto[] res){
 		assertEquals(counties, res);

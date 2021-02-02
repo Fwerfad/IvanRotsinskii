@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class wsCountryDto {
+public class CountryDto {
 	private String name;
 	private String capital;
 	private List<String> altSpellings;
