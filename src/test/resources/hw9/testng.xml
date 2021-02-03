@@ -1,8 +1,7 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Suite">
-    <test name="JdiTests">
-        <classes>
-            <class name="hw9.JdiTests"/>
-        </classes>
-    </test>
+    <suite-files>
+        <suite-file path="low_level.xml"/>
+        <suite-file path="functional_level.xml"/>
+    </suite-files>
 </suite>
