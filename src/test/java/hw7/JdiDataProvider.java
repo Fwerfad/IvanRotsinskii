@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import hw7.entities.MetalsAndColor;
 import lombok.SneakyThrows;
-import org.json.JSONObject;
 import org.testng.annotations.DataProvider;
 
 import java.nio.charset.StandardCharsets;
@@ -20,7 +19,6 @@ public class JdiDataProvider {
     @SneakyThrows
     public Iterator<Object> dpMethod(){
         String jsonString = new String(Files.readAllBytes(Paths.get("src/test/resources/hw7/JDI_ex8_metalsColorsDataSet.json")), StandardCharsets.UTF_8);; //assign your JSON String here
-        JSONObject obj = new JSONObject(jsonString);
         Gson gson = new Gson();
         JsonParser jsonParser = new JsonParser();
         System.out.println(jsonParser.parse(jsonString).getAsJsonObject().keySet());
