@@ -7,17 +7,13 @@ import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.Button;
-import com.epam.jdi.light.ui.html.elements.complex.MultiSelector;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
-import hw7.entities.MetalsAndColorDataEntry;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import hw7.entities.MetalsAndColor;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JdiMetalsAndColorForm extends Form<MetalsAndColorDataEntry> {
+public class JdiMetalsAndColorForm extends Form<MetalsAndColor> {
     @UI("[name=custom_radio_odd]")
     public RadioButtons odd;
 
@@ -44,15 +40,31 @@ public class JdiMetalsAndColorForm extends Form<MetalsAndColorDataEntry> {
     @Css("#salad-dropdown > ul > li > a > input")
     private Checklist vegetables;
 
-    public void submit(MetalsAndColorDataEntry metalsAndColorDataEntry) {
-        odd.select(metalsAndColorDataEntry.getOdd());
-        even.select(metalsAndColorDataEntry.getEven());
-        colors.select(metalsAndColorDataEntry.getColors());
-        elements.select(metalsAndColorDataEntry.getElements());
+    public Map<String, Integer> elemKeys = new HashMap<String, Integer>() {{
+        put("Water", 1);
+        put("Earth", 2);
+        put("Wind", 3);
+        put("Fire", 4);
+    }};
+
+    private Map<String, Integer> vegKeys = new HashMap<String, Integer>(){{
+        put("Cucumber", 1);
+        put("Tomato", 2);
+        put("Vegetables", 3);
+        put("Onion", 4);
+    }};
+
+
+
+    public void submit(MetalsAndColor metalsAndColorDataEntry) {
+        odd.select(metalsAndColorDataEntry.getOdd() / 2 + 1);
+        even.select(metalsAndColorDataEntry.getEven() / 2);
+        colors.select(metalsAndColorDataEntry.getColor());
+        elements.select(metalsAndColorDataEntry.getElements().stream().mapToInt(s -> elemKeys.get(s)).toArray());
         metals.select(metalsAndColorDataEntry.getMetals());
         vegetablesButton.click();
         vegetables.select("Vegetables");
-        vegetables.select(metalsAndColorDataEntry.getVegetables());
+        vegetables.select(metalsAndColorDataEntry.getVegetables().stream().mapToInt(s -> vegKeys.get(s)).toArray());
         vegetablesButton.click();
         submitButton.click();
     }

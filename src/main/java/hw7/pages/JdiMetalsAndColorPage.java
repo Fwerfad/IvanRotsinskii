@@ -2,28 +2,24 @@ package hw7.pages;
 
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
-import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
-import hw7.entities.MetalsAndColorDataEntry;
+import hw7.entities.MetalsAndColor;
 import hw7.forms.*;
 import org.openqa.selenium.WebElement;
 
-import java.lang.reflect.Field;
 import java.util.*;
 
-public class JdiMetalsAndColor  extends WebPage {
+public class JdiMetalsAndColorPage extends WebPage {
 
-    @Css("#mCSB_2_container > section:nth-child(2) > div.info-panel-body.info-panel-body-result > div > ul")
+    @Css("div.info-panel-body-result > div > ul")
     private WebElement result;
 
     private JdiMetalsAndColorForm jdiMetalsAndColorForm;
 
-    public Map<String, String> fillData(MetalsAndColorDataEntry data) {
-        System.out.println(data);
+    public void submit(MetalsAndColor data) {
         jdiMetalsAndColorForm.submit(data);
-        return getData();
     }
 
-    private Map<String, String> getData() {
+    public Map<String, String> getData() {
         String[] temp = result.getText().split("\n");
         Map<String, String> result = new HashMap<>();
         for (String s : temp) {
