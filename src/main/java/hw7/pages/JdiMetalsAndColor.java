@@ -1,74 +1,35 @@
 package hw7.pages;
 
 import com.epam.jdi.light.elements.composite.WebPage;
-import hw7.entities.DataEntry;
+import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
+import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
+import hw7.entities.MetalsAndColorDataEntry;
 import hw7.forms.*;
+import org.openqa.selenium.WebElement;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 public class JdiMetalsAndColor  extends WebPage {
-    private SummaryForm summaryForm;
 
-    private ElementsForm elementsForm;
+    @Css("#mCSB_2_container > section:nth-child(2) > div.info-panel-body.info-panel-body-result > div > ul")
+    private WebElement result;
 
-    private ColorsForm colorsForm;
+    private JdiMetalsAndColorForm jdiMetalsAndColorForm;
 
-    private MetalsForm metalsForm;
-
-    private VegetablesForm vegetablesForm;
-
-    private ResultForm resultForm;
-
-
-    private void runTests(DataEntry data) {
-        summaryForm.selectSummary(data.getSummary());
-        elementsForm.selectElements(data.getElements());
-        metalsForm.selectMetal(data.getMetals());
-        colorsForm.selectColor(data.getColor());
-        vegetablesForm.selectVegetables(data.getVegetables());
+    public Map<String, String> fillData(MetalsAndColorDataEntry data) {
+        System.out.println(data);
+        jdiMetalsAndColorForm.submit(data);
+        return getData();
     }
 
-    private void reset(DataEntry data) {
-        vegetablesForm.reset(data.getVegetables());
-        elementsForm.reset(data.getElements());
-    }
-
-    public Map<String, Boolean> fillData(DataEntry data) {
-        this.runTests(data);
-        ArrayList<Boolean> elementResult = (elementsForm.checkElements(data.getElements()));
-        ArrayList<Boolean> summaryResult = summaryForm.checkSummary(data.getSummary());
-        ArrayList<Boolean> vegetableResult = vegetablesForm.checkVegetables(data.getVegetables());
-        boolean metalResult = metalsForm.checkMetal(data.getMetals());
-        boolean colorsResult = colorsForm.checkColor(data.getColor());
-        this.reset(data);
-        Map<String, Boolean> wholeResult = new HashMap<>();
-        wholeResult.put("Summary", !summaryResult.contains(false));
-        wholeResult.put("Elements", !elementResult.contains(false));
-        wholeResult.put("Vegetable", !vegetableResult.contains(false));
-        wholeResult.put("Color", colorsResult);
-        wholeResult.put("Metal", metalResult);
-        return wholeResult;
-    }
-
-    public Map<String, String> checkSubmission(DataEntry data) {
-        this.runTests(data);
-        Map<String, String> actualData = resultForm.getData();
-        this.reset(data);
-        return actualData;
+    private Map<String, String> getData() {
+        String[] temp = result.getText().split("\n");
+        Map<String, String> result = new HashMap<>();
+        for (String s : temp) {
+            String[] temp2 = s.split(": ");
+            result.put(temp2[0], temp2[1]);
+        }
+        return result;
     }
 }
-
-
-
-//
-//    @Css("#elements-checklist")
-//    public Checkbox elements;
-//
-//    @Css("#salad-dropdown")
-//    public MultiSelector vegetables;
-//
-//    @Css("#colors > div > div > ul")
-//    public Dropdown color;
-//
-//    @Css("#metals > div > div > ul")
-//    public Combobox metals;

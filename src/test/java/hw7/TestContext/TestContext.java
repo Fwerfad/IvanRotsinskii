@@ -1,12 +1,10 @@
 package hw7.TestContext;
 
-import hw7.entities.DataEntry;
+import hw7.entities.MetalsAndColorDataEntry;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class TestContext {
 
@@ -14,7 +12,7 @@ public class TestContext {
 
     private WebDriver driver;
 
-    private List<DataEntry> Data = new ArrayList<>();
+    private List<MetalsAndColorDataEntry> Data = new ArrayList<>();
 
     private TestContext() {}
 
@@ -26,12 +24,12 @@ public class TestContext {
         this.driver = driver;
     }
 
-    public List<DataEntry> getData() {
+    public List<MetalsAndColorDataEntry> getData() {
         return Data;
     }
 
-    public void addData(DataEntry dataEntry) {
-        Data.add(dataEntry);
+    public void addData(MetalsAndColorDataEntry metalsAndColorDataEntry) {
+        Data.add(metalsAndColorDataEntry);
     }
 
     public static TestContext getInstance() {

@@ -1,7 +1,7 @@
 package hw7;
 
 import hw7.TestContext.TestContext;
-import hw7.entities.DataEntry;
+import hw7.entities.MetalsAndColorDataEntry;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -60,7 +60,7 @@ public class JdiTests {
             String color = entry.getString("color");
             String metals = entry.getString("metals");
             ArrayList<String> vegetables = (ArrayList<String>) entry.getJSONArray("vegetables").toList().stream().map(s -> (String) s).collect(Collectors.toList());;
-            testContext.addData(new DataEntry(summary, elements, color, metals, vegetables));
+            testContext.addData(new MetalsAndColorDataEntry(summary, elements, color, metals, vegetables));
         }
     }
 
@@ -71,39 +71,15 @@ public class JdiTests {
         JdiSite.jdiHomePage.checkUserLoggedIn();
     }
 
-    @Test
-    public void jdi3OpenMetalsAndColors(){
+    @Test(dataProvider = "data-provider")
+    public void jdi3MetalsAndColorFormTest(MetalsAndColorDataEntry data){
         JdiSite.openHomePage();
         JdiSite.jdiHomePage.navToMetalsAndColors();
         Assert.assertEquals(JdiSite.jdiHomePage.driver().getTitle(), JdiSite.METALSANDCOLOR); //Доставать тайтл не через драйвер
-    }
-
-    @Test(dataProvider = "data-provider")
-    public void jdi4FillFormMetalsAndColors(DataEntry data){
-        JdiSite.openMetalsAndColor();
-        SoftAssert softAssert = new SoftAssert();
-        Map<String, Boolean> result = JdiSite.jdiMetalsAndColor.fillData(data);
-        for (String key : result.keySet()) {
-            softAssert.assertTrue(result.get(key), key + " is wrong in " + data.toString());
-        }
-        softAssert.assertAll();
-    }
-
-
-
-
-    @Test(dataProvider = "data-provider")
-    public void jdi5SumbitFormMetalsAndColorsData(DataEntry data) {
-        JdiSite.openMetalsAndColor();
-        Map<String, String> actualData = JdiSite.jdiMetalsAndColor.checkSubmission(data);
-        Assert.assertTrue(actualData.size() > 0, "wrong submission on " + data.toString());
-    }
-
-    @Test(dataProvider = "data-provider")
-    public void jdi6AssertSubmitFormMetalsAndColorsData(DataEntry data) {
-        JdiSite.openMetalsAndColor();
-        Map<String, String> actualData = JdiSite.jdiMetalsAndColor.checkSubmission(data);
-        Map<String, String> expectedData = data.returnMap();
-        Assert.assertEquals(actualData, expectedData, "wrong submission on " + data.toString());
+        Map<String, String> result = JdiSite.jdiMetalsAndColor.fillData(data);
+        Map<String, String> expectedResult = data.returnMap();
+        System.out.println(result);
+        System.out.println(expectedResult);
+        Assert.assertEquals(result, expectedResult, "wrong data in submit area");
     }
 }
