@@ -36,7 +36,7 @@ public class JdiTests {
         JdiSite.jdiMetalsAndColorPage.open();
         JdiSite.jdiMetalsAndColorPage.submit(data);
         Map<String, String> actualResult = JdiSite.jdiMetalsAndColorPage.getData();
-        Map<String, String> expectedResult = data.returnMap();
+        Map<String, String> expectedResult = data.asMap();
         Assert.assertEquals(actualResult, expectedResult, "wrong data in submit logs");
     }
 }

@@ -36,7 +36,7 @@ public class MetalsAndColor extends DataClass {
         return summary.get(0);
     }
 
-    public Map<String, String> returnMap() {
+    public Map<String, String> asMap() {
         Map<String, String> result = new HashMap<>();
         String summaryResult = String.valueOf(summary.get(0) + summary.get(1));
         String elementsResult = elements.toString().replace("[", "").replace("]", "");
