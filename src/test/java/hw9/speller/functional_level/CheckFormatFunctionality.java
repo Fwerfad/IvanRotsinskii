@@ -14,7 +14,7 @@ public class CheckFormatFunctionality {
     @Test(dataProvider = "Language", dataProviderClass = DataProvider.class)
     void checkWrongLanguageSubmitted(TextDto textDto) {
         Response request = RestTextService.getInstance()
-                .getResponse(textDto.getText(), textDto.getEndpoint(), textDto.getFormat());
+                .makeRequestWithTextAndFormat(textDto.getText(), textDto.getEndpoint(), textDto.getFormat());
         ResponseDto actualResult = RestTextService.getInstance()
                 .getPrettyText(request);
         RestTextAssertions.getInstance()

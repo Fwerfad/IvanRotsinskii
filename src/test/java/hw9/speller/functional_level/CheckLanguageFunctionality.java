@@ -15,7 +15,7 @@ public class CheckLanguageFunctionality {
     @Test(dataProvider = "Language", dataProviderClass = DataProvider.class)
     void checkWrongLanguageSubmitted(TextDto textDto) {
         Response request = RestTextService.getInstance()
-                .getResponse(textDto.getText(), textDto.getEndpoint());
+                .makeRequestWithText(textDto.getText(), textDto.getEndpoint());
         ResponseDto actualResult = RestTextService.getInstance()
                 .getPrettyText(request);
         RestTextAssertions.getInstance()

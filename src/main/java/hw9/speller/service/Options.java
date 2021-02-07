@@ -1,4 +1,4 @@
-package hw9.speller.constants;
+package hw9.speller.service;
 
 public class Options {
     public static final int IGNORE_DIGITS = 2;

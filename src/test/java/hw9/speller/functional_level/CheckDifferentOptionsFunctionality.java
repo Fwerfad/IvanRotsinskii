@@ -15,7 +15,7 @@ public class CheckDifferentOptionsFunctionality {
     @Test(dataProvider = "Options", dataProviderClass = DataProvider.class)
     void checkResult(TextDto textDto) {
         Response request = RestTextService.getInstance()
-                .getResponse(textDto.getText(), textDto.getEndpoint(), textDto.getOptions());
+                .makeRequestWithTextAndOptions(textDto.getText(), textDto.getEndpoint(), textDto.getOptions());
         ResponseDto actualResult = RestTextService.getInstance()
                 .getPrettyText(request);
         RestTextAssertions.getInstance()

@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class RestTextService extends CommonService{
     private static RestTextService restTextService;
@@ -14,6 +15,21 @@ public class RestTextService extends CommonService{
             restTextService = new RestTextService();
 
         return restTextService;
+    }
+
+    public Response makeRequestWithTextAndFormat(String text, int endpoint, String format) {
+        return requestFlow(new HashMap<String, String>() {{put("text", text);put("format", format);}}, endpoint);
+    }
+
+    public Response makeRequestWithTextAndOptions(String text, int endpoint, int options) {
+        return requestFlow(new HashMap<String, String>() {{put("text", text);put("options", String.valueOf(options));}}, endpoint);
+    }
+
+    public Response makeRequestWithTexts(ArrayList<String> texts, int endpoint) {
+        startNewRequest();
+        for (String text : texts)
+            addParams("text", text);
+        return post(endpoint);
     }
 
     public ResponseDto getPrettyText(Response request) {

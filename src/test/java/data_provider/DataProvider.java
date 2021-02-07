@@ -1,6 +1,6 @@
 package data_provider;
 
-import hw9.speller.constants.Options;
+import hw9.speller.service.Options;
 import hw9.speller.dto.TextDto;
 
 import java.util.ArrayList;

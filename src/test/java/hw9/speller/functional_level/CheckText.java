@@ -15,7 +15,7 @@ public class CheckText {
     @Test(dataProvider = "PositiveOne", dataProviderClass = DataProvider.class)
     void checkText(TextDto textDto) {
         Response request = RestTextService.getInstance()
-                .getResponse(textDto.getText(), textDto.getEndpoint());
+                .makeRequestWithText(textDto.getText(), textDto.getEndpoint());
         ResponseDto actualResult = RestTextService.getInstance()
                 .getPrettyText(request);
         RestTextAssertions.getInstance()

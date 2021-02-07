@@ -15,7 +15,7 @@ public class CheckTexts {
     @Test(dataProvider = "PositiveMany", dataProviderClass = DataProvider.class)
     void checkTexts(TextDto textDto) {
         Response request = RestTextService.getInstance()
-                .getResponse(textDto.getTexts(), textDto.getEndpoint());
+                .makeRequestWithTexts(textDto.getTexts(), textDto.getEndpoint());
         ResponseDto actualResult = RestTextService.getInstance()
                 .getPrettyText(request);
         RestTextAssertions.getInstance()
