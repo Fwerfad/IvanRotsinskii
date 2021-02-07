@@ -2,19 +2,31 @@
 <suite name="Functional level tests">
     <test name="Checking different Options Functionality">
         <classes>
-            <class name="hw9.speller.functional_level.CheckDifferentOptionsFuntionality"/>
+            <class name="hw9.speller.functional_level.CheckDifferentOptionsFunctionality"/>
         </classes>
     </test>
 
     <test name="Checking getting expected result from text">
         <classes>
-            <class name="hw9.speller.functional_level.CheckGettingExpectedResult"/>
+            <class name="hw9.speller.functional_level.CheckText"/>
         </classes>
     </test>
 
     <test name="Check getting expected results from several texts">
         <classes>
-            <class name="hw9.speller.functional_level.CheckGettingExpectedResults"/>
+            <class name="hw9.speller.functional_level.CheckTexts"/>
+        </classes>
+    </test>
+
+    <test name="Checking switching formats">
+        <classes>
+            <class name="hw9.speller.functional_level.CheckFormatFunctionality"/>
+        </classes>
+    </test>
+
+    <test name="Checking different language set from text language">
+        <classes>
+            <class name="hw9.speller.functional_level.CheckLanguageFunctionality"/>
         </classes>
     </test>
 </suite>

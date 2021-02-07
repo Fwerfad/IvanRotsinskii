@@ -1,87 +1,67 @@
 package hw9.speller.service;
 
-import hw9.speller.dto.TextDto;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import io.restassured.response.Validatable;
-import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import lombok.SneakyThrows;
 
 import java.util.ArrayList;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.apache.http.HttpStatus.SC_OK;
 
 public class CommonService {
-    @SneakyThrows
-    private Properties getProperties() {
-        Properties props = new Properties();
-        String propFileName = "hw9/test.properties";
-        props.load(getClass().getClassLoader().getResourceAsStream(propFileName));
-        return props;
+
+    private Properties properties = new Properties();
+
+    private RequestSpecification request;
+    private Response response;
+
+    private void post(int endpoint) {
+        response = request.when().post(properties.getProperties().get("BaseUrl").toString() +
+                (properties.getProperties().get(properties.getEndpoint(endpoint)).toString()));
+    }
+
+    private RequestSpecification addParams(String name, String value) {
+        return request.formParam(name, value);
+    }
+
+    private Response getResponse() {
+        return response.then()
+                .statusCode(SC_OK)
+                .and()
+                .extract().response();
+    }
+
+    private void startNewRequest() {
+        request = RestAssured.given();
+    }
+
+    private Response requestFlow(Map<String, String> params, int endpoint) {
+        startNewRequest();
+        for (String key : params.keySet())
+            addParams(key, params.get(key));
+        post(endpoint);
+        return getResponse();
     }
 
     public Response getResponse(String text, int endpoint) {
-        Response request = RestAssured.given()
-                .formParam("text", text)
-                .when()
-                .post(getProperties().get("BaseUrl").toString() +
-                        (endpoint==1?
-                                getProperties().get("textEndpoint").toString() :
-                                getProperties().get("textsEndpoint").toString()))
-                .then()
-                .statusCode(200)
-                .and()
-                .extract().response();
-        return request;
+        return requestFlow(new HashMap<String, String>() {{put("text", text);}}, endpoint);
     }
 
     public Response getResponse(String text, int endpoint, String format) {
-        Response request = RestAssured.given()
-                .formParam("text", text)
-                .formParam("format", format)
-                .when()
-                .post(getProperties().get("BaseUrl").toString() +
-                        (endpoint==1?
-                                getProperties().get("textEndpoint").toString() :
-                                getProperties().get("textsEndpoint").toString()))
-                .then()
-                .statusCode(200)
-                .and()
-                .extract().response();
-        return request;
+        return requestFlow(new HashMap<String, String>() {{put("text", text);put("format", format);}}, endpoint);
     }
 
     public Response getResponse(String text, int endpoint, int options) {
-        Response request = RestAssured.given()
-                .formParam("text", text)
-                .formParam("options", options)
-                .when()
-                .post(getProperties().get("BaseUrl").toString() +
-                        (endpoint==1?
-                                getProperties().get("textEndpoint").toString() :
-                                getProperties().get("textsEndpoint").toString()))
-                .then()
-                .statusCode(200)
-                .and()
-                .extract().response();
-        return request;
+        return requestFlow(new HashMap<String, String>() {{put("text", text);put("options", String.valueOf(options));}}, endpoint);
     }
 
     public Response getResponse(ArrayList<String> texts, int endpoint) {
-        Response request;
-        RequestSpecification partlyDoneRequest = RestAssured.given();
-        for (String text : texts) {
-            partlyDoneRequest.formParam("text", text);
-        }
-        request = partlyDoneRequest
-                .post(getProperties().get("BaseUrl").toString() +
-                        (endpoint==1?
-                                getProperties().get("textEndpoint").toString() :
-                                getProperties().get("textsEndpoint").toString()))
-                .then()
-                .statusCode(200)
-                .and()
-                .extract().response();
-        return request;
+        startNewRequest();
+        for (String text : texts)
+            addParams("text", text);
+        post(endpoint);
+        return getResponse();
     }
 }

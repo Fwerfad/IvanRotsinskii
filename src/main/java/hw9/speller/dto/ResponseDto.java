@@ -12,5 +12,5 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class ResponseDto {
-    ArrayList<String> results;
+    ArrayList<String> texts;
 }

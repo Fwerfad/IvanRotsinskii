@@ -12,10 +12,6 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class TextDto {
-    public static int IGNORE_DIGITS = 2;
-    public static int IGNORE_URLS = 4;
-    public static int FIND_REPEAT_WORDS = 8;
-    public static int IGNORE_CAPITALIZATION = 512;
     private ArrayList<String> texts;
     private String text;
     private String lang;

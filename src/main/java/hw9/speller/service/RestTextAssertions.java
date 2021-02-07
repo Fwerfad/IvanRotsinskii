@@ -6,8 +6,6 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 
-import java.util.List;
-
 public class RestTextAssertions {
     private static RestTextAssertions restTextAssertions;
 
@@ -20,19 +18,19 @@ public class RestTextAssertions {
 
     public RestTextAssertions assertWrongLanguageTexts(TextDto textDto, ResponseDto responseDto) {
         if (textDto.isUnexpectedResult())
-            Assert.assertFalse(responseDto.getResults().contains(textDto.getExpectedResult()), "Getting expected result with wrong language set");
+            Assert.assertFalse(responseDto.getTexts().contains(textDto.getExpectedResult()), "Getting expected result with wrong language set");
         else
-            Assert.assertTrue(responseDto.getResults().contains(textDto.getExpectedResult()), "Not getting expected result");
+            Assert.assertTrue(responseDto.getTexts().contains(textDto.getExpectedResult()), "Not getting expected result");
         return this;
     }
 
     public RestTextAssertions assertStatusCode(Response request, int expectedStatusCode) {
-        Assert.assertEquals(request.statusCode(), expectedStatusCode);
+        Assert.assertEquals(request.statusCode(), expectedStatusCode, "Expected status code:" + expectedStatusCode + ", but got:" + request.statusCode());
         return this;
     }
 
     public RestTextAssertions assertTexts(TextDto textDto, ResponseDto responseDto) {
-        Assert.assertTrue(responseDto.getResults().contains(textDto.getExpectedResult()), "Got unexpected result: Expected " + textDto.getExpectedResult() + " but got " + responseDto.getResults());
+        Assert.assertTrue(responseDto.getTexts().contains(textDto.getExpectedResult()), "Got unexpected result: Expected " + textDto.getExpectedResult() + " but got " + responseDto.getTexts());
         return this;
     }
 
@@ -40,7 +38,7 @@ public class RestTextAssertions {
         SoftAssert softAssert = new SoftAssert();
         for (String text : textDto.getExpectedResults()) {
             if (!text.equals(""))
-                softAssert.assertTrue(responseDto.getResults().contains(text), "Got unexpected result: Expected " + text + " but got " + responseDto.getResults());
+                softAssert.assertTrue(responseDto.getTexts().contains(text), "Got unexpected result: Expected " + text + " but got " + responseDto.getTexts());
         }
         softAssert.assertAll();
         return this;
