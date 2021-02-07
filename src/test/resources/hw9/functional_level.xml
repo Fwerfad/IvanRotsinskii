@@ -6,13 +6,13 @@
         </classes>
     </test>
 
-    <test name="Checking getting expected result from text">
+    <test name="Checking checkText functionality">
         <classes>
             <class name="hw9.speller.functional_level.CheckText"/>
         </classes>
     </test>
 
-    <test name="Check getting expected results from several texts">
+    <test name="Checking checkTexts functionality">
         <classes>
             <class name="hw9.speller.functional_level.CheckTexts"/>
         </classes>
@@ -24,7 +24,7 @@
         </classes>
     </test>
 
-    <test name="Checking different language set from text language">
+    <test name="Checking switching languages">
         <classes>
             <class name="hw9.speller.functional_level.CheckLanguageFunctionality"/>
         </classes>
