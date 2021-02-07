@@ -25,8 +25,10 @@ public class CommonService {
     }
 
     Response post(int endpoint) {
-        Response response = request.when().post(properties.getProperties().get("BaseUrl").toString() +
-                (properties.getProperties().get(properties.getEndpoint(endpoint)).toString()));
+        String url = properties.getProperties().get("BaseUrl").toString() +
+                properties.getProperties().get(properties.getEndpoint(endpoint)).toString();
+        Response response = request.when()
+                .post(url);
         return response.then()
                 .statusCode(SC_OK)
                 .and()
