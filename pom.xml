@@ -185,14 +185,5 @@
                 <filtering>true</filtering>
             </testResource>
         </testResources>
-        <!--        <resources>-->
-        <!--            <resource>-->
-        <!--                <directory>${project.basedir}/src/main/resources</directory>-->
-        <!--            </resource>-->
-        <!--            <resource>-->
-        <!--                <directory>src/test/resources</directory>-->
-        <!--                <filtering>true</filtering>-->
-        <!--            </resource>-->
-        <!--        </resources>-->
     </build>
 </project>
