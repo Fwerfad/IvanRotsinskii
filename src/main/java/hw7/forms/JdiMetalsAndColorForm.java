@@ -54,8 +54,6 @@ public class JdiMetalsAndColorForm extends Form<MetalsAndColor> {
         put("Onion", 4);
     }};
 
-
-
     public void submit(MetalsAndColor metalsAndColorDataEntry) {
         odd.select(metalsAndColorDataEntry.getOdd() / 2 + 1);
         even.select(metalsAndColorDataEntry.getEven() / 2);

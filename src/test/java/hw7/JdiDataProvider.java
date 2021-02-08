@@ -21,7 +21,6 @@ public class JdiDataProvider {
         String jsonString = new String(Files.readAllBytes(Paths.get("src/test/resources/hw7/JDI_ex8_metalsColorsDataSet.json")), StandardCharsets.UTF_8);; //assign your JSON String here
         Gson gson = new Gson();
         JsonParser jsonParser = new JsonParser();
-        System.out.println(jsonParser.parse(jsonString).getAsJsonObject().keySet());
         Set<String> keyset = jsonParser.parse(jsonString).getAsJsonObject().keySet();
         Collection<Object> dp = new ArrayList<Object>();
         for (String key : keyset) {

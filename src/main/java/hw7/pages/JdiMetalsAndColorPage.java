@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import java.util.*;
 
 public class JdiMetalsAndColorPage extends WebPage {
-
     @Css("div.info-panel-body-result > div > ul")
     private WebElement result;
 

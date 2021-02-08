@@ -8,13 +8,10 @@ import hw7.pages.JdiMetalsAndColorPage;
 
 @JSite("http://jdi-testing.github.io/jdi-light/")
 public class JdiSite {
-
-
     @Url("/index.html")
     public static JdiHomePage jdiHomePage;
 
     @Url("/metals-colors.html")
     @Title("Metal and Colors")
     public static JdiMetalsAndColorPage jdiMetalsAndColorPage;
-
 }
