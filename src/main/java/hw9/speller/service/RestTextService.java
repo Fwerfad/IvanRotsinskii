@@ -40,12 +40,10 @@ public class RestTextService extends CommonService{
     }
 
     public ResponseDto getResponseDto(Response request) {
-        System.out.println(request.getBody().prettyPrint());
         ResponseDto[] responseDto = new Gson().fromJson(request.getBody().prettyPrint(), ResponseDto[].class);
         return responseDto.length != 0 ? responseDto[0] : new ResponseDto();
     }
     public ResponseDto[] getResponseDtos(Response request) {
-        System.out.println(request.getBody().prettyPrint());
         ResponseDto[][] responseDto = new Gson().fromJson(request.getBody().prettyPrint(), ResponseDto[][].class);
         return responseDto.length != 0 ? responseDto[0] : new ResponseDto[0];
     }
