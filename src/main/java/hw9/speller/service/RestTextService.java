@@ -17,12 +17,16 @@ public class RestTextService extends CommonService{
         return restTextService;
     }
 
+    public Response makeRequestWithText(String text, int endpoint) {
+        return getWithParams(new HashMap<String, String>() {{put("text", text);}}, endpoint);
+    }
+
     public Response makeRequestWithTextAndFormat(String text, int endpoint, String format) {
-        return requestFlow(new HashMap<String, String>() {{put("text", text);put("format", format);}}, endpoint);
+        return getWithParams(new HashMap<String, String>() {{put("text", text);put("format", format);}}, endpoint);
     }
 
     public Response makeRequestWithTextAndOptions(String text, int endpoint, int options) {
-        return requestFlow(new HashMap<String, String>() {{put("text", text);put("options", String.valueOf(options));}}, endpoint);
+        return getWithParams(new HashMap<String, String>() {{put("text", text);put("options", String.valueOf(options));}}, endpoint);
     }
 
     public Response makeRequestWithTexts(ArrayList<String> texts, int endpoint) {

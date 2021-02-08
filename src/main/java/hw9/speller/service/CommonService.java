@@ -35,14 +35,15 @@ public class CommonService {
                 .extract().response();
     }
 
-    Response requestFlow(Map<String, String> params, int endpoint) {
+    Response getWithParams(Map<String, String> params, int endpoint) {
         startNewRequest();
         for (String key : params.keySet())
             addParams(key, params.get(key));
         return post(endpoint);
     }
 
-    public Response makeRequestWithText(String text, int endpoint) {
-        return requestFlow(new HashMap<String, String>() {{put("text", text);}}, endpoint);
+    Response getNoParams() {
+        startNewRequest();
+        return post(1);
     }
 }
