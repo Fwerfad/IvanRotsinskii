@@ -8,9 +8,25 @@ import lombok.experimental.Accessors;
 import java.util.ArrayList;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
 public class ResponseDto {
-    ArrayList<String> texts;
+    ArrayList<String> s;
+    String word;
+    int code;
+    int pos;
+    int row;
+    int col;
+    int len;
+
+    public ResponseDto() {
+        s = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "ResponseDto{" +
+                "texts=" + s +
+                '}';
+    }
 }

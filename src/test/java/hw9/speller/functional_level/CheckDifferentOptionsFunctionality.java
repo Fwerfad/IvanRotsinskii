@@ -8,18 +8,15 @@ import hw9.speller.service.RestTextService;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static org.apache.http.HttpStatus.SC_OK;
-
 public class CheckDifferentOptionsFunctionality {
 
     @Test(dataProvider = "Options", dataProviderClass = DataProvider.class)
     void checkResult(TextDto textDto) {
         Response request = RestTextService.getInstance()
-                .makeRequestWithTextAndOptions(textDto.getText(), textDto.getEndpoint(), textDto.getOptions());
+                .makeRequestWithTextAndOptions(textDto.getText(), textDto.getOptions());
         ResponseDto actualResult = RestTextService.getInstance()
-                .getPrettyText(request);
+                .getResponseDto(request);
         RestTextAssertions.getInstance()
-                .assertStatusCode(request, SC_OK)
                 .assertTexts(textDto, actualResult);
     }
 }

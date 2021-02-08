@@ -8,18 +8,15 @@ import hw9.speller.service.RestTextService;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import static org.apache.http.HttpStatus.SC_OK;
-
 public class CheckText {
 
     @Test(dataProvider = "PositiveOne", dataProviderClass = DataProvider.class)
     void checkText(TextDto textDto) {
         Response request = RestTextService.getInstance()
-                .makeRequestWithText(textDto.getText(), textDto.getEndpoint());
+                .makeRequestWithText(textDto.getText());
         ResponseDto actualResult = RestTextService.getInstance()
-                .getPrettyText(request);
+                .getResponseDto(request);
         RestTextAssertions.getInstance()
-                .assertStatusCode(request, SC_OK)
                 .assertTexts(textDto, actualResult);
     }
 }

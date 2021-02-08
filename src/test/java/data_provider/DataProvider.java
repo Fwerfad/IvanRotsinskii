@@ -52,15 +52,15 @@ public class DataProvider {
         Collection<Object> dp = new ArrayList<>(Arrays.asList(
                 new TextDto()
                         .setTexts(new ArrayList<String>(Arrays.asList("lilte", "")))
-                        .setExpectedResults(new ArrayList<String>(Arrays.asList("little", "")))
+                        .setExpectedResults(new ArrayList<String>(Arrays.asList("little")))
                         .setEndpoint(2),
                 new TextDto()
                         .setTexts(new ArrayList<String>(Arrays.asList("lilte", "lilte",  "")))
-                        .setExpectedResults(new ArrayList<String>(Arrays.asList("little", "little", "")))
+                        .setExpectedResults(new ArrayList<String>(Arrays.asList("little", "little")))
                         .setEndpoint(2),
                 new TextDto()
                         .setTexts(new ArrayList<String>(Arrays.asList("малоко", "молоко")))
-                        .setExpectedResults(new ArrayList<String>(Arrays.asList("молоко", "")))
+                        .setExpectedResults(new ArrayList<String>(Arrays.asList("молоко")))
                         .setEndpoint(2)));
         return dp.iterator();
     }

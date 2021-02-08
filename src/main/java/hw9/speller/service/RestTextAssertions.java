@@ -18,9 +18,9 @@ public class RestTextAssertions {
 
     public RestTextAssertions assertWrongLanguageTexts(TextDto textDto, ResponseDto responseDto) {
         if (textDto.isUnexpectedResult())
-            Assert.assertFalse(responseDto.getTexts().contains(textDto.getExpectedResult()), "Getting expected result with wrong language set");
+            Assert.assertFalse(responseDto.getS().contains(textDto.getExpectedResult()), "Getting expected result with wrong language set");
         else
-            Assert.assertTrue(responseDto.getTexts().contains(textDto.getExpectedResult()), "Not getting expected result");
+            Assert.assertTrue(responseDto.getS().contains(textDto.getExpectedResult()), "Not getting expected result");
         return this;
     }
 
@@ -30,15 +30,20 @@ public class RestTextAssertions {
     }
 
     public RestTextAssertions assertTexts(TextDto textDto, ResponseDto responseDto) {
-        Assert.assertTrue(responseDto.getTexts().contains(textDto.getExpectedResult()), "Got unexpected result: Expected " + textDto.getExpectedResult() + " but got " + responseDto.getTexts());
+        Assert.assertTrue(responseDto.getS().contains(textDto.getExpectedResult()), "Got unexpected result: Expected " + textDto.getExpectedResult() + " but got " + responseDto.getS());
         return this;
     }
 
-    public RestTextAssertions assertMultipleTexts(TextDto textDto, ResponseDto responseDto) {
+    public RestTextAssertions assertMultipleTexts(TextDto textDto, ResponseDto[] responseDto) {
         SoftAssert softAssert = new SoftAssert();
         for (String text : textDto.getExpectedResults()) {
-            if (!text.equals(""))
-                softAssert.assertTrue(responseDto.getTexts().contains(text), "Got unexpected result: Expected " + text + " but got " + responseDto.getTexts());
+            boolean flag = false;
+            for (ResponseDto responseDto1 : responseDto) {
+                if (!text.equals(""))
+                    if(responseDto1.getS().contains(text))
+                        flag = true;
+            }
+            softAssert.assertTrue(flag, "Got unexpected result: Expected " + text + " but got no response");
         }
         softAssert.assertAll();
         return this;
